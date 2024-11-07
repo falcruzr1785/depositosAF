@@ -1,5 +1,5 @@
 
-import { Navigate, Route, Routes } from "react-router-dom";
+import {  Route, Routes } from "react-router-dom";
 import Subasta from './pages/Subasta';
 import Naviera from './pages/Naviera';
 import Home from './pages/Home';
