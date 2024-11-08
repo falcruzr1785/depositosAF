@@ -1,7 +1,9 @@
 .main-content {
-  margin-top: 19px; /* Ajusta el espacio según el tamaño de tu navbar */
-  margin-bottom: 10px; /* Ajusta el espacio según el tamaño de tu footer */
+ 
+ 
   width: 100%;
+   margin-top: 80px; /* Ajusta esta medida para que el formulario no quede cubierto */
+  padding: 20px;
 }
 
 .container {
