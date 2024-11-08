@@ -25,7 +25,7 @@
 .navbar {
   width: 100%; /* Ocupa todo el ancho */
   position: fixed; /* Fijado en la parte superior */
-  top: 5;
+  top: -5;
   left: 0;
   z-index: 1000; /* Para que se mantenga encima del contenido */
 }
