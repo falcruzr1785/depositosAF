@@ -22,7 +22,7 @@ function App() {
       <Route path="subasta" element={<Subasta />} />
       <Route path="naviera" element={<Naviera />} />
 
-      {/**  <Route path="*" element={<Navigate to="/"> </Navigate> } />**/}
+     <Route path="*" element={<Home />} />
 
   </Routes>
   <Footer/>
