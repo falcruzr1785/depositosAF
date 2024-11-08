@@ -1,5 +1,5 @@
 .main-content {
-  margin-top: 1px; /* Ajusta el espacio según el tamaño de tu navbar */
+  margin-top: 11px; /* Ajusta el espacio según el tamaño de tu navbar */
   margin-bottom: 9px; /* Ajusta el espacio según el tamaño de tu footer */
   width: 100%;
 }
@@ -25,7 +25,7 @@
 .navbar {
   width: 100%; /* Ocupa todo el ancho */
   position: fixed; /* Fijado en la parte superior */
-  top: -5;
+  top: 1;
   left: 0;
   z-index: 1000; /* Para que se mantenga encima del contenido */
 }
