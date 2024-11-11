@@ -9,6 +9,7 @@ import { BANK_INFO } from '../utils/bankingInfo';
 export default function Naviera() {
   const {
     register,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm();
@@ -44,41 +45,53 @@ export default function Naviera() {
         <Form.Group className="mb-3" controlId="naviera">
           <Form.Label>NAVIERA</Form.Label>
           <Form.Select
-            {...register('naviera', { required: true })}
+            {...register("naviera", { required: true })}
             className="form-control"
           >
             <option value="">Seleccionar</option>
             <option value="na">NorthAtlantic</option>
             <option value="atm">ATM</option>
           </Form.Select>
-          {errors.naviera && <span className="text-danger">Naviera es requerida</span>}
+          {errors.naviera && (
+            <span className="text-danger">Naviera es requerida</span>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="idDetalle">
           <Form.Label>Detalle</Form.Label>
           <Form.Control
             type="text"
-            {...register('idDetalle', { required: true })}
+            {...register("idDetalle", { required: true })}
             placeholder="Ingresa el detalle"
           />
-          {errors.idDetalle && <span className="text-danger">Detalle es requerido</span>}
+          {errors.idDetalle && (
+            <span className="text-danger">Detalle es requerido</span>
+          )}
         </Form.Group>
 
         <Form.Group className="mb-3" controlId="monto">
           <Form.Label>Monto</Form.Label>
           <Form.Control
             type="number"
-            {...register('monto', { required: true })}
+            {...register("monto", { required: true })}
             placeholder="Ingresa el monto"
           />
-          {errors.monto && <span className="text-danger">El monto es requerido</span>}
+          {errors.monto && (
+            <span className="text-danger">El monto es requerido</span>
+          )}
         </Form.Group>
 
         {/* Botón para enviar el formulario */}
         <Button variant="primary" type="submit">
           Generar
         </Button>
+      
       </Form>
+
+        {/* Botón para borrar el inputs */}
+        <Button variant="danger" onClick={() => {reset(); setDetalle('') } } className="mt-2">
+        Borrar
+      </Button>
 
       {/* Campo de texto que despliega el detalle */}
       <Form.Group className="mt-4" controlId="detalle">
@@ -87,9 +100,14 @@ export default function Naviera() {
       </Form.Group>
 
       {/* Botón para copiar el detalle */}
-      <Button variant="secondary" onClick={() => copiarAlPortapapeles(detalle)} className="mt-2">
+      <Button
+        variant="secondary"
+        onClick={() => copiarAlPortapapeles(detalle)}
+        className="mt-2"
+      >
         Copiar
       </Button>
+      
     </div>
   );
 }

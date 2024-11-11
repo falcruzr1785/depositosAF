@@ -1,7 +1,9 @@
 .main-content {
-  margin-top: 1px; /* Ajusta el espacio según el tamaño de tu navbar */
-  margin-bottom: 9px; /* Ajusta el espacio según el tamaño de tu footer */
+ 
+ 
   width: 100%;
+   margin-top: 80px; /* Ajusta esta medida para que el formulario no quede cubierto */
+  padding: 20px;
 }
 
 .container {
@@ -25,6 +27,7 @@
 .navbar {
   width: 100%; /* Ocupa todo el ancho */
   position: fixed; /* Fijado en la parte superior */
+  padding-bottom:7px; /*padding abajo*/
   top: 0;
   left: 0;
   z-index: 1000; /* Para que se mantenga encima del contenido */
