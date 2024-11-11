@@ -7,7 +7,7 @@ import { copiarAlPortapapeles } from '../utils/clipboard';
 import { BANK_INFO } from '../utils/bankingInfo';
 
 export default function Subasta() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
+  const { register, reset, handleSubmit, formState: { errors } } = useForm();
   const [detalle, setDetalle] = useState(''); // Estado para almacenar el detalle
 
   const onSubmit = handleSubmit((data) => {
