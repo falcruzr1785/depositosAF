@@ -85,6 +85,10 @@ export default function Subasta() {
           Generar
         </Button>
       </Form>
+      {/* Botón para borrar el inputs */}
+      <Button variant="danger" onClick={() => {reset(); setDetalle('') } } className="mt-2">
+        Borrar
+      </Button>
 
       {/* Campo de texto que despliega el detalle */}
       <Form.Group className="mt-4" controlId="detalle">
