@@ -32,7 +32,7 @@ const yearData = result.Results?.[0]?.ModelYear;
 const modelData = result.Results?.[0]?.Model;
 let marcaCompleta = "Datos no encontrados";
       // Procesa y establece la marca usando el primer resultado devuelto
-      if (marcaData && yearData && modelData ) {
+      if (marcaData && yearData && modelData  ) {
         marcaCompleta = `${marcaData || ""} ${modelData || ""} ${yearData || ""}`;
       } 
       
@@ -80,7 +80,7 @@ let marcaCompleta = "Datos no encontrados";
             Comprobar
           </Button>
           </Form.Group>
-        
+          {marca}
 
         <Form.Group className="mb-3" controlId="borrar">
           {/* Botón para borrar el inputs */}
@@ -93,7 +93,7 @@ let marcaCompleta = "Datos no encontrados";
           >
             Borrar
           </Button>
-
+        
         </Form.Group>
 
       </Form>
