@@ -6,6 +6,7 @@ import { detalleTxtTransport } from '../utils/auctionTexts';
 import { copiarAlPortapapeles } from '../utils/clipboard';
 import { BANK_INFO } from '../utils/bankingInfo';
 import PrintPdf from '../utils/PrintPdf';
+import InfoVehiculo from './InfoVehiculo';
 
 
 export default function Naviera() {
@@ -45,6 +46,17 @@ export default function Naviera() {
 
   return (
     <div className="container mt-4">
+
+<div className="row">
+
+{/* Columna izquierda para InfoVehiculo */}
+<div className="col-md-4">
+          <InfoVehiculo />
+        </div>
+
+
+{/* Columna derecha para el formulario de Subasta */}
+<div className="col-md-8">
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="naviera">
           <Form.Label>NAVIERA</Form.Label>
@@ -120,7 +132,8 @@ export default function Naviera() {
             pdf
           </Button>
           </div>
-      
+          </div>
+    </div>
     </div>
   );
 }

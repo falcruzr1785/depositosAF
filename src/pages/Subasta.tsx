@@ -46,7 +46,7 @@ export default function Subasta() {
 
  {/* Columna izquierda para InfoVehiculo */}
  <div className="col-md-4">
-          <InfoVehiculo />
+      {/*    <InfoVehiculo />  */}
         </div>
 
 
