@@ -5,7 +5,7 @@ import Button from 'react-bootstrap/Button';
 import { detalleTxtAuction } from '../utils/auctionTexts';
 import { copiarAlPortapapeles } from '../utils/clipboard';
 import { BANK_INFO } from '../utils/bankingInfo';
-import InfoVehiculo from './InfoVehiculo';
+{/* import InfoVehiculo from './InfoVehiculo'; */}
 import PrintPdf from '../utils/PrintPdf';
 
 
