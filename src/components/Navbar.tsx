@@ -41,6 +41,10 @@ function Navbar() {
           </ul> 
         </div>
       </div>
+       {/* Versión del programa */}
+       <span style={{ fontSize: '0.4em', color: '#888', position: 'absolute', bottom: '5px', right: '10px' }}>
+        v1.2
+      </span>
     </nav>
   );
 }

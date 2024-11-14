@@ -7,6 +7,7 @@ import Layout from './pages/Layout';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import './App.css'
+import InfoVehiculo from "./pages/InfoVehiculo";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
       <Route index element={<Home />} />
       <Route path="subasta" element={<Subasta />} />
       <Route path="naviera" element={<Naviera />} />
+      <Route path="infoVehiculo" element={<InfoVehiculo />} />
 
      <Route path="*" element={<Home />} />
 

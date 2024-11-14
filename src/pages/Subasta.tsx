@@ -5,11 +5,13 @@ import Button from 'react-bootstrap/Button';
 import { detalleTxtAuction } from '../utils/auctionTexts';
 import { copiarAlPortapapeles } from '../utils/clipboard';
 import { BANK_INFO } from '../utils/bankingInfo';
+import InfoVehiculo from './InfoVehiculo';
+import PrintPdf from '../utils/PrintPdf';
+
 
 export default function Subasta() {
   const { register, reset, handleSubmit, formState: { errors } } = useForm();
   const [detalle, setDetalle] = useState(''); // Estado para almacenar el detalle
-
   const onSubmit = handleSubmit((data) => {
     let detalleText = '';
     let montoFinal = data.monto;
@@ -38,6 +40,18 @@ export default function Subasta() {
 
   return (
     <div className="container mt-4">
+     
+      <div className="row">
+
+
+ {/* Columna izquierda para InfoVehiculo */}
+ <div className="col-md-4">
+          <InfoVehiculo />
+        </div>
+
+
+ {/* Columna derecha para el formulario de Subasta */}
+ <div className="col-md-8">
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="subasta">
           <Form.Label>SUBASTA</Form.Label>
@@ -96,10 +110,20 @@ export default function Subasta() {
         <Form.Control as="textarea" value={detalle} readOnly rows={3} />
       </Form.Group>
 
+      <div className="d-flex gap-3 mt-2">
       {/* Botón para copiar el detalle */}
       <Button variant="secondary" onClick={() => copiarAlPortapapeles(detalle)} className="mt-2">
         Copiar
       </Button>
+
+      {/*para imprimir el detalle */}
+      <Button variant="secondary" 
+      onClick={() => PrintPdf(detalle,  ` ${detalle.split(" ",6)}`)} className="mt-2">
+            pdf
+          </Button>
+          </div>
+    </div>
+    </div>
     </div>
   );
 }

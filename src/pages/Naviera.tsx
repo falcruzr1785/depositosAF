@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { detalleTxtTransport } from '../utils/auctionTexts';
 import { copiarAlPortapapeles } from '../utils/clipboard';
 import { BANK_INFO } from '../utils/bankingInfo';
+import PrintPdf from '../utils/PrintPdf';
+
 
 export default function Naviera() {
   const {
@@ -37,7 +39,9 @@ export default function Naviera() {
     }
 
     setDetalle(detalleText); // Actualizar el estado "detalle"
-  });
+  })
+  
+  ;
 
   return (
     <div className="container mt-4">
@@ -99,6 +103,8 @@ export default function Naviera() {
         <Form.Control as="textarea" value={detalle} readOnly rows={3} />
       </Form.Group>
 
+
+      <div className="d-flex gap-3 mt-2">
       {/* Botón para copiar el detalle */}
       <Button
         variant="secondary"
@@ -107,6 +113,13 @@ export default function Naviera() {
       >
         Copiar
       </Button>
+      
+      {/*para imprimir el detalle */}
+      <Button variant="secondary" 
+      onClick={() => PrintPdf(detalle,  ` ${detalle.split(" ",6)}`)} className="mt-2">
+            pdf
+          </Button>
+          </div>
       
     </div>
   );
