@@ -32,3 +32,9 @@
   left: 0;
   z-index: 1000; /* Para que se mantenga encima del contenido */
 }
+
+.oval-shadow {
+  border-radius: 50px; /* Forma ovalada */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  background-color: #fff; /* Fondo blanco */
+}

@@ -52,6 +52,7 @@ export default function Subasta() {
 
  {/* Columna derecha para el formulario de Subasta */}
  <div className="col-md-8">
+ <div className="oval-shadow p-4">
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="subasta">
           <Form.Label>SUBASTA</Form.Label>
@@ -121,6 +122,7 @@ export default function Subasta() {
       onClick={() => PrintPdf(detalle,  ` ${detalle.split(" ",6)}`)} className="mt-2">
             pdf
           </Button>
+          </div>
           </div>
     </div>
     </div>

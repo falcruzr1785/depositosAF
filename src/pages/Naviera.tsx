@@ -57,6 +57,7 @@ export default function Naviera() {
 
 {/* Columna derecha para el formulario de Subasta */}
 <div className="col-md-8">
+<div className="oval-shadow p-4">
       <Form onSubmit={onSubmit}>
         <Form.Group className="mb-3" controlId="naviera">
           <Form.Label>NAVIERA</Form.Label>
@@ -131,6 +132,7 @@ export default function Naviera() {
       onClick={() => PrintPdf(detalle,  ` ${detalle.split(" ",6)}`)} className="mt-2">
             pdf
           </Button>
+          </div>
           </div>
           </div>
     </div>
