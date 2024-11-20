@@ -36,7 +36,7 @@ let marcaCompleta = "Datos no encontrados";
         marcaCompleta = `${marcaData || ""} ${modelData || ""} ${yearData || ""}`;
       } 
       
-      setMarca(marcaCompleta);
+      setMarca(marcaCompleta + " " + data.vin);
 
     {
       /* Mostrar el detalle en una alerta */
@@ -81,6 +81,7 @@ let marcaCompleta = "Datos no encontrados";
           </Button>
           </Form.Group>
           {marca}
+          
 
         <Form.Group className="mb-3" controlId="borrar">
           {/* Botón para borrar el inputs */}
