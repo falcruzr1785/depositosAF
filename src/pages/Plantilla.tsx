@@ -198,14 +198,7 @@ export default function Plantilla() {
                   )}
                 </Form.Group>
 
-                <div className="mb-3">
-                  <Form.Check
-                    type="checkbox"
-                    id="costos"
-                    label="Marque el check para sumar costos (+55)"
-                    {...register("costos")}
-                  />
-                </div>
+                
 
                 <Button
                   variant="primary"
