@@ -2,9 +2,9 @@ import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import { useForm } from 'react-hook-form';
-import { detalleTxtTransport } from '../utils/auctionTexts';
+
 import { copiarAlPortapapeles } from '../utils/clipboard';
-import { BANK_INFO } from '../utils/bankingInfo';
+
 import PrintPdf from '../utils/PrintPdf';
 import InfoVehiculo from './InfoVehiculo';
 
@@ -20,19 +20,16 @@ export default function Naviera() {
 
   const onSubmit = handleSubmit((data) => {
     let detalleText = '';
-    let montoFinal = data.monto;
+  
 
-    // Si el checkbox de costos está marcado, sumar 55 al monto
-    if (data.costos) {
-      montoFinal = Number(data.monto) + 55;
-    }
+
 
     switch (data.naviera) {
       case 'atm':
-        detalleText = BANK_INFO.atm + detalleTxtTransport(montoFinal, data.idDetalle);
+       
         break;
       case 'na':
-        detalleText = BANK_INFO.na + detalleTxtTransport(montoFinal, data.idDetalle);
+    
         break;
       default:
         detalleText = 'Subasta no especificada';

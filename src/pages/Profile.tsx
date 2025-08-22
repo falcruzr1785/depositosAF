@@ -12,7 +12,7 @@ export default function Profile() {
   const [me, setMe] = useState<Me | null>(null);
   const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(true);
-  const [showRaw, setShowRaw] = useState(false);
+  
   const navigate = useNavigate();
 
   const load = useCallback(async () => {
@@ -156,11 +156,7 @@ export default function Profile() {
               </Alert>
             )}
 
-            {showRaw && me && (
-              <pre className="mt-4 bg-light rounded-3 p-3 small border">
-                {JSON.stringify(me, null, 2)}
-              </pre>
-            )}
+           
           </Card.Body>
         </Card>
       </div>
