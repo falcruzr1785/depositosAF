@@ -1,0 +1,1 @@
+export type VinDecode = { vehiculo: string; make?: string; model?: string; year?: number };

@@ -1,33 +1,24 @@
-import {  Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import Navbar from "../components/Navbar"; // ajusta la ruta si cambia
 
-
-function Layout() {
+export default function Layout() {
   return (
-    <div>
-         {/* . */}
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/Naviera">Navieras</Link>
-          </li>
-          <li>
-            <Link to="/Subasta">Subastas</Link>
-          </li>
-          <li>
-            <Link to="/nothing-here">Nothing Here</Link>
-          </li>
-        </ul>
-      </nav>
+    <>
+      {/* Barra fija arriba */}
+      <header className="navbar fixed-top p-0">
+        <Navbar />
+        {/* Si no usas <Navbar/>, puedes dejar tu <nav> simple aquí */}
+      </header>
 
-      <hr />
+      {/* Contenido principal (queda debajo del header y encima del footer) */}
+      <main className="main-content container-fluid">
+        <Outlet />
+      </main>
 
-      {/*  */}
-      <Outlet />
-    </div>
-  )
+      {/* Footer fijo abajo */}
+      <footer className="footer fixed-bottom">
+        © Depósitos AF
+      </footer>
+    </>
+  );
 }
-
-export default Layout

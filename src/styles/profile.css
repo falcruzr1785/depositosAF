@@ -1,0 +1,90 @@
+/* src/styles/profile.css */
+.info-vehiculo .vin-row {
+  display: flex;
+  gap: .75rem;
+  align-items: stretch;
+}
+
+.info-vehiculo .vin-input {
+  flex: 1 1 auto;    /* ← que ocupe todo */
+  min-width: 0;
+  letter-spacing: .06em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+.info-vehiculo .vin-btn {
+  flex: 0 0 auto;    /* ← botón solo lo necesario */
+  white-space: nowrap;
+}
+
+@media (max-width: 576px) {
+  .info-vehiculo .vin-row { flex-direction: column; }
+  .info-vehiculo .vin-btn { width: 100%; }
+}
+
+
+/* Sombras reutilizables */
+.shadow-xs{ box-shadow: 0 4px 10px rgba(0,0,0,.05); }
+.oval-shadow { border-radius: 50px; box-shadow: 0 4px 6px rgba(0,0,0,.1); background:#fff; }
+
+/* ---------- InfoVehiculo ---------- */
+
+/* ¡Quita el tope genérico!  (el que ponía 640px) */
+/* .infovin-card { max-width: 640px; }  <-- ELIMINAR */
+
+/* Card más ancho y centrado para esta vista */
+.info-vehiculo .infovin-card {
+  max-width: 780px;   /* ajusta al gusto */
+  margin: 0 auto;
+}
+
+/* Fila: input ocupa 1fr y el botón lo justo */
+.info-vehiculo .vin-row {
+  display: grid;
+  grid-template-columns: 1fr max-content;
+  gap: .75rem;
+  align-items: stretch;
+}
+
+/* Input estirado realmente */
+.info-vehiculo .vin-input {
+  width: 100% !important;
+  min-width: 0;                       /* evita “encogimientos” raros */
+  letter-spacing: .06em;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+}
+
+/* Botón sin saltos de línea */
+.info-vehiculo .vin-btn { white-space: nowrap; }
+
+/* Responsive: botón a la siguiente línea en móviles */
+@media (max-width: 576px) {
+  .info-vehiculo .vin-row { grid-template-columns: 1fr; }
+  .info-vehiculo .vin-btn { width: 100%; }
+}
+
+/* Botón outline más sutil */
+.btn-outline-secondary {
+  --bs-btn-color:#6c757d; --bs-btn-border-color:#dcdfe3;
+  --bs-btn-hover-bg:#f6f7f9; --bs-btn-hover-border-color:#cfd4da;
+}
+
+/* Tipografía pequeña */
+.profile-card .card-title { letter-spacing: .2px; }
+
+/* Modo oscuro opcional */
+@media (prefers-color-scheme: dark) {
+  .profile-cover {
+    background:
+      radial-gradient(1200px 200px at 0% 0%, rgba(255,255,255,.06) 0%, rgba(255,255,255,0) 70%),
+      linear-gradient(135deg, #3730a3 0%, #0ea5b7 100%);
+  }
+  .profile-avatar { border-color: rgba(255,255,255,.85); background:#111827; color:#a5b4fc; }
+  .shadow-xs { box-shadow: 0 6px 20px rgba(0,0,0,.25); }
+}
+
+/* Ajustes móviles */
+@media (max-width: 576px) {
+  .profile-cover { height: 110px; }
+  .profile-avatar { width: 64px; height: 64px; margin-top: -32px; }
+}

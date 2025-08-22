@@ -1,40 +1,25 @@
+:root {
+  --nav-h: 64px;     /* alto aprox. del navbar */
+  --footer-h: 44px;  /* alto aprox. del footer */
+}
+
+/* Compensar elementos fijos */
+html, body { height: 100%; }
+body {
+  padding-top: var(--nav-h);
+  padding-bottom: var(--footer-h);
+}
+
+/* main ocupa todo lo disponible entre ambos */
 .main-content {
- 
- 
-  width: 100%;
-   margin-top: 80px; /* Ajusta esta medida para que el formulario no quede cubierto */
+  min-height: calc(100vh - var(--nav-h) - var(--footer-h));
   padding: 20px;
 }
 
-.container {
-  width: 100%;  /* Asegura que el contenedor ocupe todo el ancho */
-  padding: 0;  /* Elimina cualquier padding extra */
-}
-
-/* Footer debe ocupar todo el ancho y ser fijo al bottom */
+/* Footer */
 .footer {
-  width: 100%; /* Ocupa todo el ancho */
-  position: fixed; /* Fijado en la parte inferior */
-  bottom: 0;
-  left: 0;
-  z-index: 1000; /* Para que se mantenga encima de otros elementos */
-  background-color: #333; /* Color de fondo para el footer */
-  color: #fff; /* Color de texto */
-  text-align: center;  /* Centrado de texto */
-  padding: 10px 0; /* Espaciado vertical */
-}
-
-.navbar {
-  width: 100%; /* Ocupa todo el ancho */
-  position: fixed; /* Fijado en la parte superior */
-  padding-bottom:7px; /*padding abajo*/
-  top: 0;
-  left: 0;
-  z-index: 1000; /* Para que se mantenga encima del contenido */
-}
-
-.oval-shadow {
-  border-radius: 50px; /* Forma ovalada */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  background-color: #fff; /* Fondo blanco */
+  background: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px 0;
 }
