@@ -20,17 +20,18 @@ type PlantillaForm = {
   stock: string;
   monto: number;
   costos?: boolean;
+  add_mount: number;
 };
 
 type Decoded = { vehiculo: string; make?: string; model?: string; year?: number };
 
 /* ---------------- helpers ---------------- */
 /** Construye el "deposit_detail" que consume /transfer */
-const buildAuctionDetail = (stock: string, amount: number) => {
-  const amountFmt = Number.isFinite(amount) ? amount.toFixed(2) : "0.00";
+const buildAuctionDetail = (stock: string) => {
+  //const amountFmt = Number.isFinite(amount) ? amount.toFixed(2) : "0.00";
   const stockFmt = (stock || "").trim().toUpperCase();
   // Ajusta la redacción si lo deseas
-  return `Pago de subasta STOCK ${stockFmt} por ${amountFmt}`;
+  return `-> *${stockFmt}* `;
 };
 
 const toTitle = (s: string) =>
@@ -43,8 +44,22 @@ export default function Plantilla() {
     register,
     reset,
     handleSubmit,
+    watch,
     formState: { errors, isSubmitting },
-  } = useForm<PlantillaForm>();
+  } = useForm<PlantillaForm>({
+  defaultValues: {
+    plantilla: "",
+    stock: "",
+    monto: 0,
+    costos: false,
+    add_mount: 0,
+  },
+});
+const costosChecked = watch("costos");
+const monto = watch("monto") ?? 0;
+const addMount = watch("add_mount") ?? 0;
+const totalPreview = (Number(monto) || 0) + (costosChecked && Number(addMount) ? Number(addMount) : 0);
+
 
   const [detalle, setDetalle] = useState("");
   const [banks, setBanks] = useState<Bank[]>([]);
@@ -73,14 +88,19 @@ export default function Plantilla() {
     };
   }, []);
 
-  const onSubmit = handleSubmit(async ({ plantilla, stock, monto, costos }) => {
+  const onSubmit = handleSubmit(async ({ plantilla, stock, monto, costos, add_mount }) => {
     if (!plantilla) return;
     const stockNorm = (stock || "").trim().toUpperCase();
-    const montoNorm = Number.isFinite(monto) ? Number(monto) : 0;
-    const montoFinal = montoNorm + (costos ? 55 : 0);
+    const montoBase = Number.isFinite(monto) ? Number(monto) : 0;
+
+
+    const extraValido =
+    costos && Number.isFinite(add_mount) && !Number.isNaN(add_mount) ? Number(add_mount) : 0;
+
+  const montoFinal = montoBase + extraValido;
 
     // Construye el detalle para el backend (ya no usamos detalleTxtAuction)
-    const depositDetail = buildAuctionDetail(stockNorm, montoFinal);
+    const depositDetail = buildAuctionDetail(stockNorm);
 
     try {
       const { texto } = await generateTransferText({
@@ -168,10 +188,10 @@ export default function Plantilla() {
                 </Form.Group>
 
                 <Form.Group className="mb-3" controlId="stock">
-                  <Form.Label>Número de Stock</Form.Label>
+                  <Form.Label>Detalle</Form.Label>
                   <Form.Control
                     type="text"
-                    placeholder="Ingresa el número de stock"
+                    placeholder="Ingresa el número de stock o detalle"
                     {...register("stock", {
                       required: true,
                       onChange: (e) =>
@@ -180,25 +200,45 @@ export default function Plantilla() {
                   />
                   {errors.stock && (
                     <span className="text-danger">
-                      El número de stock es requerido
+                      El detalle es requerido
                     </span>
                   )}
                 </Form.Group>
-
-                <Form.Group className="mb-3" controlId="monto">
-                  <Form.Label>Monto</Form.Label>
-                  <Form.Control
-                    type="number"
-                    step="0.01"
-                    placeholder="Ingresa el monto"
-                    {...register("monto", { required: true, valueAsNumber: true })}
-                  />
-                  {errors.monto && (
-                    <span className="text-danger">El monto es requerido</span>
-                  )}
-                </Form.Group>
-
+<Form.Group className="mb-3" controlId="monto">
+  <Form.Label>Monto</Form.Label>
+  <Form.Control
+    type="number"
+    step="0.01"
+    min="0"
+    placeholder="Ingresa el monto"
+    // se parsea a number automáticamente
+    {...register("monto",  {required: true, valueAsNumber: true })}
+    
+  />
+</Form.Group>
                 
+                <Form.Group className="mb-3" controlId="add_mount">
+  <Form.Label>Monto extra (opcional)</Form.Label>
+  <Form.Control
+    type="number"
+    step="0.01"
+    min="0"
+    placeholder="Ingresa el monto extra"
+    // se parsea a number automáticamente
+    {...register("add_mount", { valueAsNumber: true })}
+    // deshabilita si el checkbox no está marcado
+    disabled={!costosChecked}
+  />
+</Form.Group>
+               
+
+                 {/* Costos extras */}
+        
+        <input
+          type="checkbox"
+          {...register("costos")}
+        />
+        <span> Sumar costos extra? </span>
 
                 <Button
                   variant="primary"
@@ -224,6 +264,9 @@ export default function Plantilla() {
                 <Form.Label>Detalle</Form.Label>
                 <Form.Control as="textarea" value={detalle} readOnly rows={6} />
               </Form.Group>
+              <div className="text-muted small mt-1">
+  Total estimado: <b>{totalPreview.toFixed(2)}</b>
+</div>
 
               <div className="d-flex gap-3 mt-2">
                 <Button
@@ -247,6 +290,7 @@ export default function Plantilla() {
           </Card>
         </Col>
 
+{/* {{{{{{{{{{{{{{}}}}}}}}}}}}}} */}
         {/* Derecha: Información del VIN */}
         <Col lg={7} xl={8}>
           <Card className="shadow-sm border-0 rounded-4 sticky-side">
