@@ -14,6 +14,7 @@ import VehiculosPorCliente from "./pages/reports/VehiculosPorCliente";
 import Private from "./routes/Private";     // <- guard: requiere login
 import AdminOnly from "./routes/AdminOnly"; // <- guard: requiere admin
 import "./App.css";
+import ListadoTotalVehiculos from "./pages/reports/ListadoTotalVehiculos";
 
 export default function App() {
   return (
@@ -34,6 +35,7 @@ export default function App() {
         <Route element={<Private />}>
           <Route path="perfil" element={<Profile />} />
           <Route path="reports/VehiculosPorCliente" element={<VehiculosPorCliente />} />
+          <Route path="reports/ListadoTotalVehiculos" element={<ListadoTotalVehiculos />} />  
 
           {/* Solo admin dentro de las privadas */}
           <Route element={<AdminOnly />}>

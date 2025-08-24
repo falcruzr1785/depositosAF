@@ -114,17 +114,17 @@ export default function VehiculosAdmin() {
     );
   }, [q, items]);
 
-  const estado = (v: RowItem): "nuevo" | "proceso" | "entregado" => {
+  const estado = (v: RowItem): "NoPagos" | "proceso" | "entregado" => {
     if (v.arrived) return "entregado";
     if (v.tow_paid || v.freight_paid) return "proceso";
-    return "nuevo";
+    return "NoPagos";
     // *Puedes ajustar la lógica según tu negocio*
   };
 
   const estadoBadge = (s: ReturnType<typeof estado>) => {
     switch (s) {
-      case "nuevo":
-        return <Badge bg="secondary">Nuevo</Badge>;
+      case "NoPagos":
+        return <Badge bg="secondary">Sin pago de transporte</Badge>;
       case "proceso":
         return (
           <Badge bg="warning" text="dark">
@@ -132,7 +132,7 @@ export default function VehiculosAdmin() {
           </Badge>
         );
       case "entregado":
-        return <Badge bg="success">Entregado</Badge>;
+        return <Badge bg="success">En almacén</Badge>;
     }
   };
 

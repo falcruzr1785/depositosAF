@@ -59,6 +59,9 @@ export default function AppNavbar() {
             <NavDropdown.Item as={NavLink} to="/reports/VehiculosPorCliente" onClick={handleSelect}>
               Vehiculos de Cliente
             </NavDropdown.Item>
+            <NavDropdown.Item as={NavLink} to="/reports/ListadoTotalVehiculos" onClick={handleSelect}>
+              Listado Total de Vehiculos
+            </NavDropdown.Item>
           </NavDropdown>
 
           <NavDropdown title="Depósitos" id="depositos-dropdown" autoClose="outside">

@@ -105,7 +105,7 @@ Total: ${vehiculos.length}
 
 `;
     const lines = vehiculos.map((v) => {
-      const estado = v.arrived ? "Entregado" : v.tow_paid || v.freight_paid ? "En proceso" : "Nuevo";
+      const estado = v.arrived ? "En almacén" : v.tow_paid || v.freight_paid ? "En proceso" : "Sin pagos de transporte";
       return [
         `VIN: ${v.vin}`,
         `Marca/Modelo/Año: ${(v.make ?? "—")} ${(v.model ?? "")} ${(v.year ?? "")}`.trim(),
