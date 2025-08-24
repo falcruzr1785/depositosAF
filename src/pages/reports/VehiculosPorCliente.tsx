@@ -21,7 +21,7 @@ const fmtDate = (v?: string | Date) => {
 };
 
 const estadoBadge = (v: Vehicle) => {
-  if (v.arrived) return <Badge bg="success">Entregado</Badge>;
+  if (v.arrived) return <Badge bg="success">En almacén</Badge>;
   if (v.tow_paid || v.freight_paid) {
     return (
       <Badge bg="warning" text="dark">
@@ -29,7 +29,7 @@ const estadoBadge = (v: Vehicle) => {
       </Badge>
     );
   }
-  return <Badge bg="secondary">Nuevo</Badge>;
+  return <Badge bg="secondary"> Sin pagos de flete</Badge>;
 };
 
 const errMsg = (e: unknown): string =>

@@ -208,7 +208,7 @@ const totalPreview = (Number(monto) || 0) + (costosChecked && Number(addMount) ?
   <Form.Label>Monto</Form.Label>
   <Form.Control
     type="number"
-    step="0.01"
+    step="0.1"
     min="0"
     placeholder="Ingresa el monto"
     // se parsea a number automáticamente
@@ -265,7 +265,7 @@ const totalPreview = (Number(monto) || 0) + (costosChecked && Number(addMount) ?
                 <Form.Control as="textarea" value={detalle} readOnly rows={6} />
               </Form.Group>
               <div className="text-muted small mt-1">
-  Total estimado: <b>{totalPreview.toFixed(2)}</b>
+  Total estimado: <b>{totalPreview.toFixed(0)}</b>
 </div>
 
               <div className="d-flex gap-3 mt-2">
