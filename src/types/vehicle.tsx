@@ -56,6 +56,7 @@ export type VehicleSearchRow = {
   model?: string;
   year?: number;
   client_id: string;
+  consignatario?: string;
   arrived?: boolean;
   freight_paid?: boolean;
   tow_paid?: boolean;

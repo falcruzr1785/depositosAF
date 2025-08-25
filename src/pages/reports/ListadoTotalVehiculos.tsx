@@ -45,9 +45,11 @@ type RowItem = {
   model?: string;
   year?: number;
   client_id: string;
+  consignatario?: string;
   arrived?: boolean;
   freight_paid?: boolean;
   tow_paid?: boolean;
+  
 };
 
 type BoolFilter = "all" | "true" | "false";
@@ -78,27 +80,28 @@ export default function VehiculosAdmin() {
     if (clientName.trim().length >= 2) {
       const data = await vehiclesByClientName(clientName.trim());
       setItems(Array.isArray(data) ? data : []);
+      
     } else {
       const data = await searchVehicles({
         client_id: clientId.trim() || undefined,
         arrived: toBool(arrived),
         freight_paid: toBool(freightPaid),
         tow_paid: toBool(towPaid),
-      });
-      setItems(Array.isArray(data) ? data : []);
-    }
+
+     }); setItems(Array.isArray(data) ? data : []); } 
+
   } catch (e) {
     Swal.fire({ icon: "error", title: "Error cargando", text: getErrorMessage(e) });
   } finally {
     setLoading(false);
   }
-}, [clientName, clientId, arrived, freightPaid, towPaid]);
+}, [clientName, clientId,  arrived, freightPaid, towPaid]);
 
 
   useEffect(() => {
     void load();
   }, [load]);
-
+ console.log("Ejemplo de fila:", items[0]);
   const filtered = useMemo(() => {
     const text = q.trim().toLowerCase();
     if (!text) return items;
@@ -108,7 +111,8 @@ export default function VehiculosAdmin() {
         (v.make ?? "").toLowerCase().includes(text) ||
         (v.model ?? "").toLowerCase().includes(text) ||
         String(v.year ?? "").includes(text) ||
-        (v.client_id ?? "").toLowerCase().includes(text)
+        (v.client_id ?? "").toLowerCase().includes(text) ||
+        (v.consignatario ?? "").toLowerCase().includes(text)
     );
   }, [q, items]);
 
@@ -225,7 +229,7 @@ export default function VehiculosAdmin() {
                 <th>Marca</th>
                 <th>Modelo</th>
                 <th>Año</th>
-                <th>Cliente</th>
+                <th>Consignatario</th>
                 <th>Estado</th>
               
               </tr>
@@ -238,7 +242,8 @@ export default function VehiculosAdmin() {
                   <td>{v.make || "-"}</td>
                   <td>{v.model || "-"}</td>
                   <td>{v.year || "-"}</td>
-                  <td>{v.client_id || "-"}</td>
+                  <td>{v.consignatario || "-"}</td>
+
                   <td>{estadoBadge(estado(v))}</td>
                   <td className="d-flex gap-2"> </td>
                 </tr>
