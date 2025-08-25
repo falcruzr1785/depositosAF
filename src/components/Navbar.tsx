@@ -23,6 +23,7 @@ export default function AppNavbar() {
     navigate("/login", { replace: true });
   };
 
+  const isLogged = !!user;
   const userLabel = user?.full_name || "Usuario";
 
   return (
@@ -54,7 +55,8 @@ export default function AppNavbar() {
           <Nav.Link as={NavLink} to="/infovehiculo" end>
             Info vehículo
           </Nav.Link>
-
+          {isLogged && (
+          <>
           <NavDropdown title="Reportes" id="reportes-dropdown" autoClose="outside">
             <NavDropdown.Item as={NavLink} to="/reports/VehiculosPorCliente" onClick={handleSelect}>
               Vehiculos de Cliente
@@ -84,6 +86,8 @@ export default function AppNavbar() {
               Vehículos(ingresar nuevos)
             </NavDropdown.Item>
           </NavDropdown>
+          </>
+          )}
         </Nav>
 
         {/* Menú usuario lado derecho */}
