@@ -46,9 +46,12 @@ type RowItem = {
   year?: number;
   client_id: string;
   consignatario?: string;
+  note?: string;
+  agent_info?: string;
   arrived?: boolean;
   freight_paid?: boolean;
   tow_paid?: boolean;
+
   
 };
 
@@ -101,7 +104,7 @@ export default function VehiculosAdmin() {
   useEffect(() => {
     void load();
   }, [load]);
- console.log("Ejemplo de fila:", items[0]);
+ 
   const filtered = useMemo(() => {
     const text = q.trim().toLowerCase();
     if (!text) return items;
@@ -112,7 +115,9 @@ export default function VehiculosAdmin() {
         (v.model ?? "").toLowerCase().includes(text) ||
         String(v.year ?? "").includes(text) ||
         (v.client_id ?? "").toLowerCase().includes(text) ||
-        (v.consignatario ?? "").toLowerCase().includes(text)
+        (v.consignatario ?? "").toLowerCase().includes(text) ||
+        (v.agent_info ?? "").toLowerCase().includes(text) ||
+        (v.note ?? "").toLowerCase().includes(text) 
     );
   }, [q, items]);
 
@@ -120,9 +125,9 @@ export default function VehiculosAdmin() {
     if (v.arrived) return "entregado";
     if (v.tow_paid || v.freight_paid) return "proceso";
     return "NoPagos";
-    // *Puedes ajustar la lógica según tu negocio*
+    
   };
-  console.log(filtered)
+  
 
   const estadoBadge = (s: ReturnType<typeof estado>) => {
     switch (s) {
@@ -230,7 +235,10 @@ export default function VehiculosAdmin() {
                 <th>Modelo</th>
                 <th>Año</th>
                 <th>Consignatario</th>
+                <th>Agente Aduanal</th>
                 <th>Estado</th>
+                <th>Notas</th>
+                
               
               </tr>
             </thead>
@@ -243,8 +251,10 @@ export default function VehiculosAdmin() {
                   <td>{v.model || "-"}</td>
                   <td>{v.year || "-"}</td>
                   <td>{v.consignatario || "-"}</td>
-
+                  <td>{v.agent_info || "-"}</td>
                   <td>{estadoBadge(estado(v))}</td>
+                  <td>{v.note|| "-"}</td>
+                  
                   <td className="d-flex gap-2"> </td>
                 </tr>
               ))}
