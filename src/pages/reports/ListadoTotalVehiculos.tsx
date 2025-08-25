@@ -15,6 +15,7 @@ import {
  
   
 } from "../../utils/api";
+import { copiarAlPortapapeles } from "../../utils/clipboard";
 
 
 
@@ -117,6 +118,7 @@ export default function VehiculosAdmin() {
     return "NoPagos";
     // *Puedes ajustar la lógica según tu negocio*
   };
+  console.log(filtered)
 
   const estadoBadge = (s: ReturnType<typeof estado>) => {
     switch (s) {
@@ -137,6 +139,25 @@ export default function VehiculosAdmin() {
 
   return (
     <div className="container py-4">
+      <Row className="align-items-end g-2">
+              <Col xs={12} md={6}>
+                <h3 className="mb-0">Informe por cliente</h3>
+                <small className="text-muted">Consulta de vehículos (solo lectura)</small>
+              </Col>
+              <Col xs={12} md={6} className="text-md-end d-flex gap-2 justify-content-md-end">
+                <Button
+                  variant="outline-secondary"
+                  onClick={() => copiarAlPortapapeles(filtered.map(v => `${v.vin} -  ${v.model} (${v.year}) ${v.freight_paid ? "🚢✅Barco pago " : "🚢❌Barco NO pago " }
+                    ${v.tow_paid ? "🚚✅Grúa paga " : "🚚❌Grúa NO paga " }` ).join(" \n\n|\n "))}
+                  disabled={!filtered.length}
+                >
+                  Copiar informe
+                </Button>
+                <Button variant="outline-primary" onClick={() => window.print()} disabled={!filtered.length}>
+                  Imprimir
+                </Button>
+              </Col>
+            </Row>
       <Row className="align-items-end g-2">
         <Col xs={12} md={6}>
           <h3 className="mb-0">Vehículos</h3>
@@ -244,5 +265,5 @@ export default function VehiculosAdmin() {
   );
 }
 
-/* =========================== Modal de Edición =========================== */
+
 
