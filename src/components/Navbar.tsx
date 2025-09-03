@@ -92,19 +92,23 @@ export default function AppNavbar() {
 
         {/* Menú usuario lado derecho */}
 
-{isLogged && (
         <Nav className="ms-auto" onSelect={handleSelect}>
+          
           <NavDropdown align="end" title={userLabel} id="user-dropdown" autoClose="outside">
+           
             <NavDropdown.Item as={NavLink} to="/perfil" onClick={handleSelect}>
               Perfil
             </NavDropdown.Item>
+           
             <NavDropdown.Divider />
+             {isLogged && (
             <NavDropdown.Item onClick={handleLogout}>
               Cerrar sesión
             </NavDropdown.Item>
+             )}
           </NavDropdown>
         </Nav>
-)}
+
       </Navbar.Collapse>
     </Navbar>
   );
