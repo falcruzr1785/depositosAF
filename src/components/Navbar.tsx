@@ -1,7 +1,7 @@
 // src/components/Navbar.tsx
 import { useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown, Button } from "react-bootstrap";
 import Swal from "sweetalert2";
 import { useAuth } from "../hooks/useAuth";
 
@@ -90,25 +90,29 @@ export default function AppNavbar() {
           )}
         </Nav>
 
-        {/* Menú usuario lado derecho */}
-
+      {/* Navegación derecha */}
         <Nav className="ms-auto" onSelect={handleSelect}>
-          
-          <NavDropdown align="end" title={userLabel} id="user-dropdown" autoClose="outside">
-           
-            <NavDropdown.Item as={NavLink} to="/perfil" onClick={handleSelect}>
-              Perfil
-            </NavDropdown.Item>
-           
-            <NavDropdown.Divider />
-             {isLogged && (
-            <NavDropdown.Item onClick={handleLogout}>
-              Cerrar sesión
-            </NavDropdown.Item>
-             )}
-          </NavDropdown>
+          {!isLogged ? (
+            <Button
+              variant="outline-primary"
+              className="ms-2"
+              onClick={() => {
+                handleSelect();
+                navigate("/login");
+              }}
+            >
+              Entrar
+            </Button>
+          ) : (
+            <NavDropdown align="end" title={userLabel} id="user-dropdown" autoClose="outside">
+              <NavDropdown.Item as={NavLink} to="/perfil" onClick={handleSelect}>
+                Perfil
+              </NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item onClick={handleLogout}>Cerrar sesión</NavDropdown.Item>
+            </NavDropdown>
+          )}
         </Nav>
-
       </Navbar.Collapse>
     </Navbar>
   );

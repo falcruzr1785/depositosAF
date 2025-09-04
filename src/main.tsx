@@ -6,6 +6,7 @@ import { AuthProvider } from "./context/AuthContext";
 
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "sweetalert2/dist/sweetalert2.min.css";
 
 import './index.css'
 import App from './App.tsx'
