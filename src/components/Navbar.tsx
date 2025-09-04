@@ -13,6 +13,7 @@ export default function AppNavbar() {
   const handleSelect = () => setExpanded(false);
 
   const handleLogout = () => {
+    setExpanded(false);  
     logout(); // limpia token y user en el contexto
     Swal.fire({
       icon: "success",
